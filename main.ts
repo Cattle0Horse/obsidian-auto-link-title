@@ -312,10 +312,13 @@ export default class AutoLinkTitle extends Plugin {
   };
 
   public async fetchUrlTitleViaLinkPreview(url: string): Promise<string> {
-    if (this.settings.linkPreviewApiKey.length !== 32) {
-      console.error(
-        "LinkPreview API key is not 32 characters long, please check your settings"
-      );
+    const length = url.length;
+    if (length !== 32) {
+      if (length) {
+        console.error(
+          "LinkPreview API key is not 32 characters long, please check your settings"
+        );
+      }
       return "";
     }
 
